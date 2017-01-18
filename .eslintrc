@@ -2,8 +2,6 @@
   "parser": "babel-eslint",
   "extends": ["eslint:recommended"],
   "globals":{
-    "PIXI":true,
-    "Box2D":true
   },
   "env":{
     "browser":true,

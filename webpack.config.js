@@ -36,9 +36,6 @@ var plugins = [
 	})
 	//global module
 	, new webpack.ProvidePlugin({
-		// Box2D:path.join(__dirname,"src/libs/Box2D.js")
-		Box2D:'box2dweb'
-        ,PIXI: 'pixi.js'
 	})
 
 	//clean dist
@@ -75,8 +72,6 @@ module.exports = {
 		index: "./src/index.js",
 		vendor: [
 			"babel-polyfill"
-			, "pixi.js"
-			,'box2dweb'
 		]
 	}
 	, output: output

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/m860/pixi-fun#readme",
   "dependencies": {
+    "phaser": "^2.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
