@@ -5,6 +5,11 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
+var phaserModule = path.join(__dirname, '/node_modules/phaser/');
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js'),
+	pixi = path.join(phaserModule, 'build/custom/pixi.js'),
+	p2 = path.join(phaserModule, 'build/custom/p2.js');
+
 var isProduction = function () {
 	return process.env.NODE_ENV === 'production';
 };
@@ -36,6 +41,9 @@ var plugins = [
 	})
 	//global module
 	, new webpack.ProvidePlugin({
+		'Phaser': phaser,
+		'PIXI': pixi,
+		'p2': p2
 	})
 
 	//clean dist
@@ -128,6 +136,7 @@ module.exports = {
 	, resolve: {
 		//设置别名
 		alias: {
+
 		}
 	}
 	, plugins: plugins
