@@ -42,8 +42,8 @@ var plugins = [
 	//global module
 	, new webpack.ProvidePlugin({
 		'Phaser': phaser,
-		'PIXI': pixi,
-		'p2': p2
+		'PIXI': pixi
+		,'p2': p2
 	})
 
 	//clean dist

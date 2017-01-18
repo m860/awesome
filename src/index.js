@@ -1,31 +1,48 @@
 require('./index.sass')
-import ball from './assets/ball.png'
 
-let game=new Phaser.Game(800,600,Phaser.AUTO,'demo-1',{
-	preload:()=>{
-		game.load.image('ball',ball);
-	},
-	create:()=>{
-		let ballSprite=game.add.sprite(0,0,'ball');
-		ballSprite.anchor.set(0.5);
-		ballSprite.position.x=50;
-		ballSprite.position.y=50;
+let assets={
+	background:require('./assets/background.png')
+	,plane:require('./assets/plane.png')
+};
 
-		// apply velocity
-		// game.physics.enable(ballSprite,Phaser.Physics.ARCADE);
-		// ballSprite.body.velocity.x=100;
+let scale=window.innerHeight/931;
 
-		// listener sprite input
-		// ballSprite.inputEnabled=true;
-		// let textSprite=game.add.text(50,0,'',{fill:'#ffffff'});
-		// ballSprite.events.onInputDown.add(()=>{
-		// 	textSprite.text=`i am clicked ${new Date()}`;
-		// })
-
-		// sprite follow input
-
+class Main extends Phaser.State{
+	preload(){
+		for(let name in assets){
+			this.load.image(name,assets[name]);
+		}
 	}
-});
+	create(){
+		let background=this.add.sprite(0,0,'background');
+		background.scale.x=scale;
+		background.scale.y=scale;
+
+		let plane=this.add.sprite(0,0,'plane');
+		plane.scale.x=plane.scale.y=scale;
+		plane.anchor.set(0.5);
+		plane.inputEnabled=true;
+
+		this.plane=plane;
+	}
+	update(){
+		if(this.input.keyboard.isDown(Phaser.Keyboard.W)){
+			this.plane.y-=4;
+		}
+		if(this.input.keyboard.isDown(Phaser.Keyboard.S)){
+			this.plane.y+=4;
+		}
+		if(this.input.keyboard.isDown(Phaser.Keyboard.A)){
+			this.plane.x-=4;
+		}
+		if(this.input.keyboard.isDown(Phaser.Keyboard.D)){
+			this.plane.x+=4;
+		}
+	}
+}
+
+let game=new Phaser.Game(1440*scale,931*scale,Phaser.AUTO,'game');
+game.state.add(Main.name,new Main(),true);
 
 
 
