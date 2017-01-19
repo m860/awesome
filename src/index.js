@@ -3,8 +3,11 @@ require('./index.sass')
 let assets={
 	background:require('./assets/background.png')
 	,plane:require('./assets/plane.png')
+	,title:require('./assets/title.png')
+	,notice:require('./assets/background-notice.png')
 };
 
+// let scale=window.innerWidth/1440;
 let scale=window.innerHeight/931;
 
 class Main extends Phaser.State{
@@ -24,6 +27,16 @@ class Main extends Phaser.State{
 		plane.inputEnabled=true;
 
 		this.plane=plane;
+
+		let title=this.add.sprite(this.game.width/2,300*scale,'title');
+		title.scale.x=title.scale.y=scale;
+		title.anchor.set(0.5);
+
+		let notice=this.add.sprite(this.game.width/2,540*scale,'notice');
+		notice.scale.x=notice.scale.y=scale;
+		notice.anchor.set(0.5);
+
+
 	}
 	update(){
 		if(this.input.keyboard.isDown(Phaser.Keyboard.W)){
